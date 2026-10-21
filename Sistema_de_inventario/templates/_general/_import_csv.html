@@ -1,0 +1,36 @@
+
+{% extends "_general/_layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}Importar CSV{% endblock %}
+
+{% block page_content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Importar Productos por CSV</title>
+</head>
+<body>
+    <main>
+        <h1>Importación Masiva de Productos</h1>
+        <p>Sube un archivo en formato CSV para registrar o actualizar tus productos de forma masiva.</p>
+        
+        <!-- Formulario para subir archivos (requiere enctype="multipart/form-data") -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            
+            <button type="submit">Importar Archivo</button>
+        </form>
+
+        <br>
+        <p>
+            <a href="{% url 'home' %}">Volver a la lista de productos</a>
+        </p>
+    </main>
+</body>
+</html>
+{% endblock %}

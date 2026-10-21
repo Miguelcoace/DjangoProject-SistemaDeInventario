@@ -1,0 +1,22 @@
+{% extends "_general/_layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}Nueva Categoría{% endblock %}
+
+{% block page_content %}
+<div class="container">
+  {% include '_includes/_messages.html' %}
+
+  <h1>Nueva categoría</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          {{ form.name|as_crispy_field }}
+          {{ form.description|as_crispy_field }}
+        </div>
+      </div>
+      <button class="btn btn-secondary" type="submit">Crear</button>
+    </form>
+</div>
+{% endblock %}

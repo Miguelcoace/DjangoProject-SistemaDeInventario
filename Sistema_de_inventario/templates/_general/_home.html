@@ -1,0 +1,21 @@
+{% extends "_general/_layout.html" %} 
+
+{% block head_title %} Sistema de Inventario{% endblock %} 
+
+{% block page_content %}
+
+<div class="container">
+    <h1>Productos</h1>
+
+    <section>
+        <div class="row">
+            {% for product in all_products %}
+                <div class="col-12 col-sm-6 col-md-4">     
+                    {% include '_includes/product/_product.html' %}
+                </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-primary btn-sm" role="button" href="{% url 'product_create' %}">Añadir producto</a>
+    </section>
+</div>
+{% endblock %}

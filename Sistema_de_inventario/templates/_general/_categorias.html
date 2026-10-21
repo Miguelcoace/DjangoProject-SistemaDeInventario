@@ -1,0 +1,21 @@
+{% extends "_general/_layout.html" %} 
+
+{% block head_title %} Sistema de Inventario{% endblock %} 
+
+{% block page_content %}
+
+<div class="container">
+    <h1>Categorias</h1>
+
+    <section>
+        <div class="row">
+            {% for category in all_categories %}
+                <div class="col-12 col-sm-6 col-md-4">     
+                    {% include '_includes/category/_category.html' %}
+                </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-primary btn-sm" role="button" href="{% url 'category_create' %}">Añadir categoría</a>
+    </section>
+</div>
+{% endblock %}

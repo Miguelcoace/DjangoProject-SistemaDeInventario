@@ -1,0 +1,21 @@
+{% extends "_general/_layout.html" %} 
+
+{% block head_title %} Sistema de Inventario{% endblock %} 
+
+{% block page_content %}
+
+<div class="container">
+    <h1>Proveedores</h1>
+
+    <section>
+        <div class="row">
+            {% for supplier in all_suppliers %}
+                <div class="col-12 col-sm-6 col-md-4">     
+                    {% include '_includes/supplier/_supplier.html' %}
+                </div>
+            {% endfor %}
+        </div>
+        <a class="btn btn-primary btn-sm" role="button" href="{% url 'supplier_create' %}">Añadir proveedor</a>
+    </section>
+</div>
+{% endblock %}

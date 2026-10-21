@@ -1,0 +1,62 @@
+{% extends "_general/_layout.html" %} 
+
+{% block head_title %} Gráficas{% endblock %} 
+
+{% block page_content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráficos de Movimientos</title>
+    <!-- Importar Chart.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <main style="padding: 20px; font-family: sans-serif;">
+        <h1>📊 Gráficos de Movimientos de Inventario</h1>
+        
+        <section style="margin-bottom: 40px;">
+            <h2>Balance General (Entradas / Salidas)</h2>
+            <!-- Contenedor con ancho y alto controlado -->
+            <div style="width: 100%; max-width: 600px; height: 300px; margin: auto;">
+                <canvas id="movementChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Gráfico de Balance de Movimientos
+        const ctx = document.getElementById('movementChart').getContext('2d');
+        const movementChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Entradas (IN)', 'Salidas (OUT)'],
+                datasets: [{
+                    label: 'Cantidad Total',
+                    data: [{{ in_total|default:0 }}, {{ out_total|default:0 }}],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+{% endblock %}
